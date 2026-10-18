@@ -1,0 +1,23 @@
+{
+  "skill_name": "video-trade-ground-truth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Turn YouTube video hTsOgOKq0kM (Komjáthy Attila, 'Így skalpolok én a GOLD-on ismét') into a video-ground-truth case in research/video_ground_truth. I need the real entry and exit datetimes and prices, the frames that show them, and the trade's symbol, so it can be cross-checked against MT5.",
+      "expected_output": "A case folder named <INSTRUMENT>+<real-datetime>+<slug> containing transcript.hu.srt, transcript_clean.txt, clips/, frames/entry_frame.jpg and frames/exit_frame.jpg, an mt5_ohlc_*.csv, chart.html (rendered and visually compared to a source frame), notes.md with SOURCE_CONFIRMED vs reconstruction labels, and a case.json whose entry/exit times, prices and broker symbol are consistent with the frames. A TRADES_INDEX.tsv row describes the trade window and symbol.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I already downloaded transcript.hu.srt for a Komjáthy Dax video. Find where he actually enters and exits the trade from the captions, and tell me the timestamps so I can pull the frames.",
+      "expected_output": "Uses the SRT timestamp search (entry/exit vocabulary like beszállás/beszállok/nyitva/jang/pipa/kitörés and zárom/zártam/stop/kiléptem) rather than reading the transcript by eye, shows the matching cues with their SRT timestamps, reads the surrounding context, and states the candidate entry/exit moments as timestamps — without inventing prices that only a frame could confirm.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a fresh video-ground-truth corpus for scraping every Komjáthy video on a new machine, and make sure it will still work there even though that machine has no MetaTrader5 terminal.",
+      "expected_output": "Builds the channel census (id|duration|title, newest first), scaffolds case folders via the case tooling, and degrades gracefully when MT5 is unavailable: transcripts, frames, case.json and a manifest row are still produced, with the OHLC/chart marked pending rather than fabricated. No live orders, no forward monitoring.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build outputs (frames/, clips/, *.csv, chart.html) are deliberately NOT
+# ignored: they are the evidence a case is checked against, not disposable
+# artifacts.

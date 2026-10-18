@@ -1,0 +1,15 @@
+# Core: OHLC handling, frame timestamps, chart rendering.
+pandas>=2.0
+plotly>=5.0
+
+# Video download + subtitle conversion. ffmpeg must also be on PATH.
+yt-dlp>=2024.1.1
+
+# Real broker OHLC. Windows only; the package is an RPC client and needs a
+# running, logged-in MetaTrader 5 terminal. On other platforms the skill
+# degrades gracefully and marks OHLC as pending.
+MetaTrader5>=5.0.45 ; platform_system == "Windows"
+
+# Optional: `render_chart.py --png` screenshots chart.html with chromium.
+# After installing, run: playwright install chromium
+playwright>=1.40
